@@ -28,11 +28,11 @@ The codes were tested on MacOS.
 git clone https://github.com/kazuhiro-seki/sapir.git
 ```
 
-2. Run indexer
+2. Run indexer (Note that data.txt is not included in this repository due to the copyright.)
 ```sh
 python index.py --input data.txt  
 ```
-Note that data.txt is not included in this repository due to the copyright.
+
 
 3. Run the system
 ```sh
