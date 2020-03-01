@@ -1,12 +1,12 @@
 # S-APIR: turning news texts into business sentiment
 
-## Preface
+## About
 
 This is a repository of the demonstration system of my ongoing work, partly carried out as an [APIR](https://www.apir.or.jp) research project, to turn news articles into business sentiment. The system also let you analyze any given factors that may/may not influence business sentiment. More features are planned to be added. Stay tuned!
 
 ## Requirements
 
-Softwares
+Software
  * Python3
  * Elasticsearch and Kuromoji (for Japanese tokenization)
  * SQLite
@@ -21,7 +21,7 @@ The codes were tested on MacOS.
 
 ## Instruction to run the codes
 
-0. Install all the required softwares and libraries
+0. Install all the required software and libraries
 
 1. Clone the repository
 ```sh
