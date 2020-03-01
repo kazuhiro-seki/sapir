@@ -39,6 +39,8 @@ Note that data.txt is not included in this repository due to the copyright.
 export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 ```
 
+4. Open [http://127.0.0.1:5000/sapir](http://127.0.0.1:5000/sapir) in your browser
+
 ## Grants
 
 This work was partially supported by JSPS KAKENHI grant #JP18K11558 and MEXT, Japan. 
