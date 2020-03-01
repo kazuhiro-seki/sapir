@@ -6,11 +6,12 @@ This is a repository of the demonstration system of my ongoing work, partly carr
 
 ## Requirements
 
-* Tools
+Tools
  * Python3
  * Elasticsearch
  * SQLite
-* Python libraries
+
+Python libraries
  * elasticsearch
  * Flask
  * Flask-SQLAlchemy
