@@ -22,11 +22,19 @@ The codes were tested on MacOS.
 ## Instruction to run the codes
 
 0. Install all the required softwares and libraries
+
 1. Clone the repository
 ```sh
 git clone https://github.com/kazuhiro-seki/sapir.git
 ```
-2. Execute the following command within the repository
+
+2. Run indexer
+```sh
+python index.py --input data.txt  
+```
+Note that data.txt is not included in this repository due to the copyright.
+
+3. Run the system
 ```sh
 export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 ```
