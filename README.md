@@ -6,9 +6,9 @@ This is a repository of the demonstration system of my ongoing work, partly carr
 
 ## Requirements
 
-Tools
+Softwares
  * Python3
- * Elasticsearch
+ * Elasticsearch and Kuromoji (for Japanese tokenization)
  * SQLite
 
 Python libraries
@@ -20,6 +20,16 @@ Python libraries
 The codes were tested on MacOS.
 
 ## Instruction to run the codes
+
+0. Install all the required softwares and libraries
+1. Clone the repository
+```sh
+git clone 
+```
+2. Execute the following command within the repository
+```sh
+export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
+```
 
 ## Acknowledgment
 
