@@ -19,7 +19,7 @@ Python libraries
 
 The codes were tested on MacOS.
 
-## Instruction to run the codes
+## Instructions on how to run the codes
 
 0. Install all the required software and libraries
 
