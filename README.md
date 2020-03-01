@@ -24,7 +24,7 @@ The codes were tested on MacOS.
 0. Install all the required softwares and libraries
 1. Clone the repository
 ```sh
-git clone 
+git clone https://github.com/kazuhiro-seki/sapir.git
 ```
 2. Execute the following command within the repository
 ```sh
