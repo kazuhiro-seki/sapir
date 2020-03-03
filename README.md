@@ -8,7 +8,7 @@ This is a repository of the demonstration system of my ongoing work, partly carr
 
 Software
  * Python3
- * Elasticsearch and Kuromoji (for Japanese tokenization)
+ * Elasticsearch 6.X and Kuromoji (for Japanese tokenization)
  * SQLite
 
 Python libraries
