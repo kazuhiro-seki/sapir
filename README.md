@@ -51,7 +51,7 @@ export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 
 This work was partially supported by JSPS KAKENHI grant #JP18K11558 and MEXT, Japan. 
 
-## Reference
+## References
 
 * Kazuhiro Seki and Yusuke Ikuta. Estimating Business Sentiment from News Texts. In *Proceedings of the 2nd IEEE Artificial Intelligence and Knowledge Engineering*, pp. 55-56, 2019.
 
