@@ -43,6 +43,10 @@ export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 
 <img src="/figs/demo.png" width="600">
 
+5. Search any keyword to find out its influence on business sentiment.
+
+<img src="/figs/china.png" width="600">
+
 ## Grants
 
 This work was partially supported by JSPS KAKENHI grant #JP18K11558 and MEXT, Japan. 
