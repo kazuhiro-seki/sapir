@@ -49,4 +49,6 @@ This work was partially supported by JSPS KAKENHI grant #JP18K11558 and MEXT, Ja
 
 ## Reference
 
-* Kazuhiro Seki and Yusuke Ikuta. Estimating Business Sentiment from News Texts. In *Proceedings of the 2nd IEEE Artificial Intelligence and Knowledge Engineering*, pp. 55-56, June 2019.
+* Kazuhiro Seki and Yusuke Ikuta. Estimating Business Sentiment from News Texts. In *Proceedings of the 2nd IEEE Artificial Intelligence and Knowledge Engineering*, pp. 55-56, 2019.
+
+* Kazuhiro Seki and Yusuke Ikuta. S-APIR: News-based Business Sentiment Index. arXiv:2003.02973 [cs.CL], 2020. [https://arxiv.org/abs/2003.02973](https://arxiv.org/abs/2003.02973)
