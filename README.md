@@ -45,7 +45,7 @@ export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 
 5. Search any keyword to find out its influence on business sentiment.
 
-<img src="/figs/china.png" width="600">
+<img src="/figs/influence.png" width="600">
 
 ## Grants
 
