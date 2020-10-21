@@ -47,12 +47,14 @@ export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 
 <img src="/figs/influence.png" width="600">
 
-## Grants
+## Acknowledgments
 
-This work was partially supported by JSPS KAKENHI grant #JP18K11558 and MEXT, Japan. 
+This work was done partly as a research project at APIR and was
+partially supported by JSPS KAKENHI \#JP18K11558 and MEXT, Japan. We
+thank Hideo Miyahara, Hiroshi Iwano, Yuzo Honda, Yoshihisa Inada,
+Yoichi Matsubayashi, and Yusuke Ikuta for their support.  The Nikkei
+data were provided by APIR.
 
-## References
+## Reference
 
-* Kazuhiro Seki and Yusuke Ikuta. Estimating Business Sentiment from News Texts. In *Proceedings of the 2nd IEEE Artificial Intelligence and Knowledge Engineering*, pp. 55-56, 2019.
-
-* Kazuhiro Seki and Yusuke Ikuta. S-APIR: News-based Business Sentiment Index. arXiv:2003.02973 [cs.CL], 2020. [https://arxiv.org/abs/2003.02973](https://arxiv.org/abs/2003.02973)
+* Kazuhiro Seki and Yusuke Ikuta. S-APIR: News-based Business Sentiment Index. In Proceedings of the 24th European Conference on Advances in Databases and Information Systems, pp. 189-198, August 2020.
