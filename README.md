@@ -1,4 +1,4 @@
-# S-APIR: turning news texts into business sentiment
+# S-APIR: Turning news texts into business sentiment
 
 ## About
 
@@ -7,7 +7,7 @@ This is a repository of the demonstration system of my ongoing work, partly carr
 ## Requirements
 
 Software
- * Python3
+ * Python 3
  * Elasticsearch 6.X and Kuromoji (for Japanese tokenization)
  * SQLite
 
@@ -39,13 +39,17 @@ python index.py --input data.txt
 export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 ```
 
-4. Open [http://127.0.0.1:5000/sapir](http://127.0.0.1:5000/sapir) in your browser
+4. Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser
 
 <img src="/figs/demo.png" width="600">
 
 5. Search any keyword to find out its influence on business sentiment.
 
 <img src="/figs/influence.png" width="600">
+
+## Demo system
+
+You can play with the demo system [here](http://44.237.209.189/sapir). Note that it currently accepts only Japanese queries. 
 
 ## Acknowledgments
 
