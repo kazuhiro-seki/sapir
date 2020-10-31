@@ -3,7 +3,6 @@ import csv
 import os
 import sys
 
-import yaml
 import utils
 from elasticsearch import Elasticsearch, helpers
 
