@@ -7,7 +7,7 @@ This is a repository of the demonstration system of my ongoing work, partly carr
 ## Requirements
 
 Software
- * Python3
+ * Python 3
  * Elasticsearch 6.X and Kuromoji (for Japanese tokenization)
  * SQLite
 
