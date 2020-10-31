@@ -203,8 +203,8 @@
 		  type: 'linear',
 		  position: 'right',
 		  ticks: {
-		      max: 57,
-		      min: 36.0
+		      max: 70,
+		      min: 5.0
 		  },
 		  gridLines: {
 		      display:false
@@ -296,10 +296,12 @@
     <p class="float-right">
       <a href="#">Back to top</a>
     </p>
-    <p>&copy; Kazuhiro Seki</p>
+    <p id="copyright">&copy;
+	<script>document.write(new Date().getFullYear())</script>
+	Kazuhiro Seki
+    </p>
   </div>
 </footer>
-
 
 {% endblock %}
 

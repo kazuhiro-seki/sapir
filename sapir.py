@@ -2,7 +2,7 @@
 
 import os
 import re
-from datetime import datetime 
+from datetime import datetime
 from flask import Flask, render_template, request, redirect, \
      url_for, send_from_directory, g, flash, session, jsonify, \
      make_response
@@ -12,6 +12,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 
 from elasticsearch import Elasticsearch
+
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -48,22 +49,22 @@ def insert_sapir():
 def insert_economy_watchers():
     print('inserting economy watchers di')
 
-    keiki_2002_201812 = [35.5, 34.5, 41.6, 43.9, 45.3, 42.6, 42.1, 42.2, 41.8, 39.0, 38.4, 38.5, 38.9, 39.5, 38.8, 36.0, 37.7, 41.9, 44.3, 45.2, 47.9, 51.7, 49.8, 50.8, 51.6, 51.3, 51.5, 53.2, 51.8, 51.0, 53.6, 49.9, 46.7, 47.2, 46.7, 45.9, 48.4, 46.6, 47.0, 47.1, 49.6, 50.5, 49.8, 49.6, 51.1, 51.4, 54.3, 57.5, 55.6, 55.0, 54.8, 52.4, 50.4, 48.4, 47.4, 49.3, 50.4, 51.7, 50.4, 51.6, 51.0, 50.7, 48.1, 46.9, 45.6, 44.9, 43.3, 43.0, 42.2, 42.6, 41.1, 39.4, 35.9, 35.2, 34.4, 32.2, 30.4, 28.2, 27.0, 27.3, 27.5, 24.4, 23.5, 18.9, 21.3, 21.1, 25.8, 30.4, 34.5, 40.6, 39.6, 40.7, 42.9, 43.3, 37.1, 38.4, 42.8, 43.4, 44.2, 45.7, 45.2, 45.8, 46.8, 44.7, 42.0, 43.5, 47.1, 47.7, 47.9, 49.1, 24.0, 23.9, 33.5, 48.2, 50.0, 47.3, 46.8, 49.8, 48.6, 48.9, 46.6, 46.1, 47.5, 46.9, 45.0, 42.6, 42.3, 44.3, 43.4, 42.9, 43.9, 47.1, 51.1, 52.6, 53.2, 52.7, 53.9, 52.5, 50.7, 52.0, 54.9, 55.3, 56.9, 56.5, 55.7, 52.3, 54.1, 38.4, 43.4, 47.7, 50.1, 48.6, 49.2, 47.0, 44.3, 45.4, 46.1, 49.5, 49.3, 50.8, 51.8, 51.1, 50.5, 50.4, 48.8, 50.6, 48.6, 48.5, 47.3, 44.2, 42.5, 40.9, 42.0, 41.3, 44.1, 46.2, 46.3, 48.3, 50.5, 50.7, 49.4, 48.8, 47.9, 48.5, 49.1, 50.0, 49.9, 50.0, 51.1, 52.0, 54.1, 53.9, 49.9, 48.6, 48.9, 49.0, 47.1, 48.1, 46.6, 48.7, 48.3, 48.6, 49.5, 46.8]
+    keiki_industry_2002_202006 = [33.6, 35.6, 41.3, 44.0, 48.3, 44.6, 44.1, 43.2, 42.7, 40.0, 40.7, 41.8, 40.1, 40.6, 39.4, 37.1, 39.4, 43.0, 45.9, 47.2, 50.0, 52.7, 52.0, 51.9, 53.3, 52.4, 53.6, 55.8, 55.0, 53.4, 54.6, 52.3, 48.7, 48.4, 47.2, 44.5, 47.0, 47.1, 48.1, 47.9, 49.9, 48.7, 48.5, 50.5, 52.3, 52.8, 55.6, 57.7, 56.0, 56.0, 55.5, 52.1, 50.0, 49.2, 48.6, 48.7, 50.2, 51.6, 51.3, 52.5, 51.7, 50.9, 49.0, 47.5, 44.8, 44.6, 45.4, 42.5, 42.7, 42.0, 41.1, 38.9, 36.2, 35.7, 34.3, 32.8, 31.1, 29.3, 25.0, 27.3, 27.3, 24.0, 22.1, 15.1, 19.1, 18.1, 25.5, 30.2, 35.3, 40.5, 42.7, 43.8, 46.0, 47.3, 41.7, 40.7, 44.5, 44.8, 46.0, 48.1, 47.1, 45.0, 45.0, 41.8, 42.3, 42.1, 47.0, 46.5, 47.6, 47.4, 28.0, 25.7, 32.8, 45.6, 48.7, 47.9, 47.5, 49.5, 48.7, 47.1, 44.8, 44.5, 48.2, 45.5, 44.6, 43.4, 42.2, 44.3, 41.9, 41.6, 43.5, 46.4, 51.7, 54.2, 53.0, 54.1, 56.4, 52.4, 52.5, 54.0, 57.7, 57.6, 58.6, 60.4, 58.5, 55.9, 55.7, 46.6, 47.2, 50.4, 52.5, 49.5, 49.3, 48.2, 46.1, 45.8, 47.3, 50.2, 50.5, 51.4, 50.5, 51.6, 51.5, 49.4, 47.9, 48.8, 48.5, 47.6, 46.5, 45.2, 45.1, 44.0, 44.2, 42.4, 44.7, 48.3, 48.9, 49.5, 50.7, 51.8, 50.5, 50.4, 49.7, 49.4, 52.1, 52.9, 52.1, 52.0, 52.0, 55.4, 54.3, 54.6, 52.4, 50.5, 51.3, 51.2, 50.7, 49.8, 49.7, 50.7, 50.0, 49.2, 48.8, 46.3, 46.4, 46.5, 45.0, 45.4, 43.6, 43.5, 42.8, 41.8, 44.7, 41.0, 39.2, 41.2, 41.7, 30.1, 19.2, 9.9, 15.0, 30.4]
 
-    keiki = keiki_2002_201812[(2013-2002)*12:(2019-2002)*12]
+    keiki = keiki_industry_2002_202006[(2008-2002)*12:(2021-2002)*12-6]
 
     months = []
-    for year in range(2013, 2019):
+    for year in range(2002, 2020):
         months += ['{}{:02d}'.format(year, x) for x in range(1, 13)]
     
-    for month, index in zip(months, keiki):
+    for month, index in zip(months[:len(keiki)], keiki):
         db.session.add(
             SAPIR_MONTH(factor='EWDI',
                         month=month,
                         index=index))
     db.session.commit()
 
-@app.route('/sapir')
+@app.route('/')
 def home():
 
     # retrieve watchlist from cookie
@@ -82,7 +83,7 @@ def home():
                            ewdi=ewdi, contribs=contribs)
 
 
-@app.route('/sapir/search', methods = ['POST'])
+@app.route('/search', methods = ['POST'])
 def search():
 
     keyword = request.form['keyword']
@@ -98,10 +99,17 @@ def search():
 
     # get sentiment of watchlist
     contribs = []
+    to_be_removed = []
     for w in watchlist:
         result = SAPIR_MONTH.query.filter_by(factor=w).all()
         if len(result) == 0:
             # query elasticsearch
+
+            # need to set min and max date for correct adjustment
+            # (add 9 hours as JST is 9 hours ahead of UTC)
+            min = int(datetime(2008,1,1).timestamp() * 1000)
+            max = int(datetime(2020,6,30,23,59,59).timestamp() * 1000)
+
             query = {
                 "size": 0,
                 "query": {
@@ -116,7 +124,11 @@ def search():
                         "date_histogram": {
                             "field": "date",
                             "interval": "month",
-                            "format": "yyyyMMdd",
+                            "extended_bounds" : {
+                                "min" : min,
+                                "max" : max
+                            },
+                            "format": "yyyyMMdd"
                         },
                         "aggregations": {
                             "sum_sentiment": {
@@ -128,6 +140,7 @@ def search():
                     }
                 }
             }
+            
             for r in es.search(index='sapir', body=query)["aggregations"]["sum_month_sentiment"]['buckets']:
                 date = r["key_as_string"]
                 sentiment = r["sum_sentiment"]["value"] \
@@ -144,7 +157,13 @@ def search():
 
         if len(result) > 0:
             contribs.append(result)
+        else:
+            to_be_removed.append(w)
 
+    # remove unknown words
+    for w in to_be_removed:
+        watchlist.remove(w)
+            
     # update cookie
     res = make_response(
         render_template('index.html', sapir=sapir,
@@ -154,7 +173,7 @@ def search():
     
     return res
 
-@app.route('/sapir/delete_factor')
+@app.route('/delete_factor')
 def delete_factor():
     print('received:', request.args.get('id'))
 
@@ -169,14 +188,20 @@ def delete_factor():
     
     return res
         
-
-@app.route('/sapir/delete/')
+'''
+hidden page to clear cache
+'''
+@app.route('/delete/')
 def delete_cookie():
     res = make_response(
         render_template('index.html', sapir=sapir,
                         ewdi=ewdi))
     res.set_cookie('watchlist', '', max_age=0)
     return res
+
+'''
+main
+'''
 
 # sql tables
 db.drop_all()
@@ -210,4 +235,3 @@ query = {
 month2cnt = dict()
 for r in es.search(index='sapir', body=query)["aggregations"]["cnt_month"]['buckets']:
     month2cnt[r["key_as_string"][:6]] = r["doc_count"]
-
