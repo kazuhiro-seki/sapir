@@ -1,4 +1,4 @@
-# S-APIR: turning news texts into business sentiment
+# S-APIR: Turning news texts into business sentiment
 
 ## About
 
