@@ -47,6 +47,10 @@ export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 
 <img src="/figs/influence.png" width="600">
 
+## Demo system
+
+You can play with the demo system [here](http://44.237.209.189/sapir).
+
 ## Acknowledgments
 
 This work was partially supported by JSPS KAKENHI \#JP18K11558 and MEXT, Japan. We
