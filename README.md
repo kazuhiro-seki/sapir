@@ -17,7 +17,7 @@ Python libraries
  * Flask-SQLAlchemy
  * SQLAlchemy
 
-The codes were tested on MacOS.
+The codes were tested on macOS Catalina and CentOS 7.
 
 ## Instructions on how to run the codes
 
