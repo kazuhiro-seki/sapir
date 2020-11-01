@@ -41,11 +41,11 @@ export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 
 4. Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser
 
-<img src="/figs/demo.png" width="600">
+<img src="/figs/landing.png" width="600">
 
 5. Search any keyword to find out its influence on business sentiment.
 
-<img src="/figs/influence.png" width="600">
+<img src="/figs/tax.png" width="600">
 
 ## Demo system
 
