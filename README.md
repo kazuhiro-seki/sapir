@@ -49,7 +49,7 @@ export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 
 ## Demo system
 
-You can play with the demo system [here](http://44.237.209.189/sapir). Note that it currently accepts only Japanese queries. If the demo system doen't work for some reason, try deleting the cache from [here](http://44.237.209.189/sapir/delete).
+You can play with the demo system at [http://44.237.209.189/sapir](http://44.237.209.189/sapir). Note that it currently accepts only Japanese queries. If the demo system doen't work for some reason, try deleting its cache by clicking [here](http://44.237.209.189/sapir/delete).
 
 ## Acknowledgments
 
