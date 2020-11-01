@@ -18,7 +18,6 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/seki/projects/finindex/demo/sapir.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sapir.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -79,6 +78,8 @@ def home():
     for w in watchlist:
         contribs.append(SAPIR_MONTH.query.filter_by(factor=w).all())
     
+    print(watchlist)
+
     return render_template('index.html', sapir=sapir,
                            ewdi=ewdi, contribs=contribs)
 
@@ -106,7 +107,7 @@ def search():
             # query elasticsearch
 
             # need to set min and max date for correct adjustment
-            # (add 9 hours as JST is 9 hours ahead of UTC)
+            # (add 9 hours if JST is used as it's 9 hours ahead of UTC)
             min = int(datetime(2008,1,1).timestamp() * 1000)
             max = int(datetime(2020,6,30,23,59,59).timestamp() * 1000)
 
@@ -235,3 +236,4 @@ query = {
 month2cnt = dict()
 for r in es.search(index='sapir', body=query)["aggregations"]["cnt_month"]['buckets']:
     month2cnt[r["key_as_string"][:6]] = r["doc_count"]
+
