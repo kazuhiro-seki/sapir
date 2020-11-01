@@ -17,7 +17,7 @@ Python libraries
  * Flask-SQLAlchemy
  * SQLAlchemy
 
-The codes were tested on MacOS.
+The codes were tested on macOS Catalina and CentOS 7.
 
 ## Instructions on how to run the codes
 
@@ -49,7 +49,7 @@ export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 
 ## Demo system
 
-You can play with the demo system [here](http://44.237.209.189/sapir). Note that it currently accepts only Japanese queries. 
+You can play with the demo system at [http://44.237.209.189/sapir](http://44.237.209.189/sapir). Note that it currently accepts only Japanese queries. If the demo system doen't work for some reason, try deleting its cache by clicking [here](http://44.237.209.189/sapir/delete).
 
 ## Acknowledgments
 
@@ -60,4 +60,4 @@ data were provided by APIR.
 
 ## Reference
 
-* Kazuhiro Seki and Yusuke Ikuta. S-APIR: News-based Business Sentiment Index. In Proceedings of the 24th European Conference on Advances in Databases and Information Systems, pp. 189-198, August 2020.
+Kazuhiro Seki and Yusuke Ikuta. S-APIR: News-based Business Sentiment Index. In Proceedings of the 24th European Conference on Advances in Databases and Information Systems, pp. 189-198, August 2020.
