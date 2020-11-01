@@ -39,11 +39,11 @@ python index.py --input data.txt
 export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 ```
 
-4. Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser
+4. Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser. An example query "増税" (tax increase) is preset in the text box for convenience.
 
 <img src="/figs/landing.png" width="600">
 
-5. Search any keyword to find out its influence on business sentiment.
+5. Search the example query or any other keywords to find out thier influences on business sentiment. For the example of "増税", we can see from the resulting plot that there have been multiple periods in which tax increase had notable negative effects and the one in 2014 had the biggest impact.
 
 <img src="/figs/tax.png" width="600">
 
