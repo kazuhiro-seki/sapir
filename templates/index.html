@@ -11,8 +11,8 @@
 <script type=text/javascript>
   {% for i in range(contribs|length) %}
   $(function() {
-      $('a#button{{i}}').bind('click', function() {
-          $.getJSON('/sapir/delete_factor',
+      $('a#delete{{i}}').bind('click', function() {
+          $.getJSON('/delete_factor',
 		    {id: {{i}}},
                     function(data) {
 			//do nothing
@@ -69,7 +69,7 @@
   </div>
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
-      <a href="#" class="navbar-brand d-flex align-items-center">
+      <a href={{ url_for('home') }} class="navbar-brand d-flex align-items-center">
 	    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M 23 21 a 2 2 0 0 1-2 2 H 3 a 2 2 0 0 1-2-2 V 3 a 2 2 0 0 1 2-2 h 18 a 2 2 0 0 1 2 2 z"/><path d="m 1 18 l 5 2 l 5 -6 l 4 4 l 4 -10 l 4 -3 m -22 8 l 4 2 l 5 -11 l 4 8 l 2 -10"/></svg>
 	    <strong>S-APIR: turning news texts into business sentiment</strong>
       </a>
@@ -84,7 +84,7 @@
 
   <section class="jumbotron text-center">
     <div class="container">
-      <h1>S-APIR Index</h1>
+      <h1><a href={{ url_for('home') }} style='color: black'>S-APIR Index</a></h1>
       <p class="lead text-muted">Search any factor (keyword) which may have an influence on business sentiment. </br> "増税" (tax increase) is preset as a query for convenience.</p>
       <form action="{{ url_for('search') }}" method="POST" enctype="multipart/form-data" id="usrform" class="form-inline justify-content-center">
 	<input type="text" name="keyword" id="keyword" value="増税" class="form-control" autofocus>
@@ -124,7 +124,10 @@
 	      <canvas id="canvas{{i}}"></canvas>
 	      <div class="d-flex justify-content-center align-items-center">
 		<div class="btn-group">
-		  <a href=# id="button{{i}}"><button id="delete{{i}}" type="button" class="btn btn-sm btn-outline-secondary" style="margin-top: 0.8rem">Delete</button></a>
+		  <a href=# id="delete{{i}}"><button id="delete{{i}}" type="button" class="btn btn-sm btn-outline-secondary" style="margin: 0.8rem 0.8rem 0rem 0rem">delete</button></a>
+		</div>
+		<div class="btn-group">
+		  <a href={{ url_for('download', id=i) }} class="btn btn-sm btn-outline-secondary" style="margin: 0.8rem 0rem 0 0">csv</a>
 		</div>
 	      </div>
 	    </div>

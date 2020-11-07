@@ -2,7 +2,8 @@
 
 import os
 import re
-from datetime import datetime
+import logging
+from datetime import datetime, timezone
 from flask import Flask, render_template, request, redirect, \
      url_for, send_from_directory, g, flash, session, jsonify, \
      make_response
@@ -13,8 +14,13 @@ from sqlalchemy import create_engine
 
 from elasticsearch import Elasticsearch
 
+from io import StringIO
+import csv
+from urllib.parse import quote
 
+logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)
+
 app.config.from_object(__name__)
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
@@ -35,7 +41,7 @@ class SAPIR_MONTH(db.Model):
             (self.factor, self.month, self.index)
     
 def insert_sapir():
-    print('inserting sapir')
+    app.logger.info('inserting sapir')
     with app.open_resource('method_c.csv', mode='r') as f:
         for line in f:
             month, index = line.rstrip().split(',')
@@ -46,7 +52,7 @@ def insert_sapir():
     db.session.commit()
 
 def insert_economy_watchers():
-    print('inserting economy watchers di')
+    app.logger.info('inserting economy watchers di')
 
     keiki_industry_2002_202006 = [33.6, 35.6, 41.3, 44.0, 48.3, 44.6, 44.1, 43.2, 42.7, 40.0, 40.7, 41.8, 40.1, 40.6, 39.4, 37.1, 39.4, 43.0, 45.9, 47.2, 50.0, 52.7, 52.0, 51.9, 53.3, 52.4, 53.6, 55.8, 55.0, 53.4, 54.6, 52.3, 48.7, 48.4, 47.2, 44.5, 47.0, 47.1, 48.1, 47.9, 49.9, 48.7, 48.5, 50.5, 52.3, 52.8, 55.6, 57.7, 56.0, 56.0, 55.5, 52.1, 50.0, 49.2, 48.6, 48.7, 50.2, 51.6, 51.3, 52.5, 51.7, 50.9, 49.0, 47.5, 44.8, 44.6, 45.4, 42.5, 42.7, 42.0, 41.1, 38.9, 36.2, 35.7, 34.3, 32.8, 31.1, 29.3, 25.0, 27.3, 27.3, 24.0, 22.1, 15.1, 19.1, 18.1, 25.5, 30.2, 35.3, 40.5, 42.7, 43.8, 46.0, 47.3, 41.7, 40.7, 44.5, 44.8, 46.0, 48.1, 47.1, 45.0, 45.0, 41.8, 42.3, 42.1, 47.0, 46.5, 47.6, 47.4, 28.0, 25.7, 32.8, 45.6, 48.7, 47.9, 47.5, 49.5, 48.7, 47.1, 44.8, 44.5, 48.2, 45.5, 44.6, 43.4, 42.2, 44.3, 41.9, 41.6, 43.5, 46.4, 51.7, 54.2, 53.0, 54.1, 56.4, 52.4, 52.5, 54.0, 57.7, 57.6, 58.6, 60.4, 58.5, 55.9, 55.7, 46.6, 47.2, 50.4, 52.5, 49.5, 49.3, 48.2, 46.1, 45.8, 47.3, 50.2, 50.5, 51.4, 50.5, 51.6, 51.5, 49.4, 47.9, 48.8, 48.5, 47.6, 46.5, 45.2, 45.1, 44.0, 44.2, 42.4, 44.7, 48.3, 48.9, 49.5, 50.7, 51.8, 50.5, 50.4, 49.7, 49.4, 52.1, 52.9, 52.1, 52.0, 52.0, 55.4, 54.3, 54.6, 52.4, 50.5, 51.3, 51.2, 50.7, 49.8, 49.7, 50.7, 50.0, 49.2, 48.8, 46.3, 46.4, 46.5, 45.0, 45.4, 43.6, 43.5, 42.8, 41.8, 44.7, 41.0, 39.2, 41.2, 41.7, 30.1, 19.2, 9.9, 15.0, 30.4]
 
@@ -68,7 +74,9 @@ def home():
 
     # retrieve watchlist from cookie
     watchlist = request.cookies.get('watchlist')
-    print("Watchlist:", watchlist)
+    if watchlist != None:
+        app.logger.info("Watchlist: " + watchlist)
+
     if watchlist == None or watchlist == '':
         watchlist = []
     else:
@@ -78,8 +86,6 @@ def home():
     for w in watchlist:
         contribs.append(SAPIR_MONTH.query.filter_by(factor=w).all())
     
-    print(watchlist)
-
     return render_template('index.html', sapir=sapir,
                            ewdi=ewdi, contribs=contribs)
 
@@ -88,7 +94,8 @@ def home():
 def search():
 
     keyword = request.form['keyword']
-
+    app.logger.info('query is ' + keyword)
+    
     # retrieve watchlist from cookie
     watchlist = request.cookies.get('watchlist')
     if watchlist == None or watchlist == '':
@@ -102,15 +109,20 @@ def search():
     contribs = []
     to_be_removed = []
     for w in watchlist:
+
+        # inquire database first
         result = SAPIR_MONTH.query.filter_by(factor=w).all()
+
+        # use elasticsearch if not found
         if len(result) == 0:
-            # query elasticsearch
 
             # need to set min and max date for correct adjustment
-            # (add 9 hours if JST is used as it's 9 hours ahead of UTC)
-            min = int(datetime(2008,1,1).timestamp() * 1000)
-            max = int(datetime(2020,6,30,23,59,59).timestamp() * 1000)
+            min = int(datetime(\
+                2008,1,1,tzinfo=timezone.utc).timestamp() * 1000)
+            max = int(datetime(\
+                2020,6,30,23,59,59,tzinfo=timezone.utc).timestamp() * 1000)
 
+            # query elasticsearch
             query = {
                 "size": 0,
                 "query": {
@@ -176,21 +188,50 @@ def search():
 
 @app.route('/delete_factor')
 def delete_factor():
-    print('received:', request.args.get('id'))
+    app.logger.info('received: ' + request.args.get('id'))
 
     # update cookie
     watchlist = request.cookies.get('watchlist').split('|')
-    print(watchlist)
+    app.logger.debug('before: ' + ' '.join(watchlist))
     res = make_response('')
     watchlist.pop(int(request.args.get('id')))
-    print(watchlist)
+    app.logger.debug('after:  ' + ' '.join(watchlist))
     res.set_cookie('watchlist', '|'.join(watchlist),
                    max_age=60*60*24*expiration_days)
     
     return res
         
+@app.route("/<int:id>/download")
+def download(id):
+
+    app.logger.info('received: ' + str(id))
+    
+    # get keyword by given id
+    watchlist = request.cookies.get('watchlist').split('|')
+    w = watchlist[id]
+    app.logger.info('keyword: ' + w)
+    
+    # inquire database
+    result = SAPIR_MONTH.query.filter_by(factor=w).all()
+
+    # dynamically prepare csv file
+    f = StringIO()
+    writer = csv.writer(f)
+
+    writer.writerow(['date','sentiment'])
+    for row in result:
+        writer.writerow([row.month, row.index])
+
+    res = make_response(f.getvalue())
+    res.headers['Content-Type'] = 'text/csv'
+    file_expr = "filename*=utf-8''{}".format(quote(w+'.csv'))
+    res.headers['Content-Disposition'] = \
+        'attachment; {}'.format(file_expr)
+    
+    return res
+
 '''
-hidden page to clear cache
+Hidden page to clear cache
 '''
 @app.route('/delete/')
 def delete_cookie():
