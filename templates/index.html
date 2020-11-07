@@ -12,7 +12,7 @@
   {% for i in range(contribs|length) %}
   $(function() {
       $('a#delete{{i}}').bind('click', function() {
-          $.getJSON('/delete_factor',
+          $.getJSON("{{ url_for('delete_factor') }}",
 		    {id: {{i}}},
                     function(data) {
 			//do nothing
