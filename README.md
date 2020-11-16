@@ -60,4 +60,4 @@ data were provided by APIR.
 
 ## Reference
 
-Kazuhiro Seki and Yusuke Ikuta. S-APIR: News-based Business Sentiment Index. In Proceedings of the 24th European Conference on Advances in Databases and Information Systems, pp. 189-198, August 2020.
+Kazuhiro Seki and Yusuke Ikuta. S-APIR: News-based Business Sentiment Index. In *Proceedings of the 24th European Conference on Advances in Databases and Information Systems*, pp. 189-198, August 2020.
