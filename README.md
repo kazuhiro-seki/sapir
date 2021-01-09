@@ -55,8 +55,7 @@ You can play with the demo system at [http://44.237.209.189/sapir](http://44.237
 
 This work was partially supported by JSPS KAKENHI \#JP18K11558 and MEXT, Japan. We
 thank Hideo Miyahara, Hiroshi Iwano, Yuzo Honda, Yoshihisa Inada,
-Yoichi Matsubayashi, and Yusuke Ikuta for their support.  The Nikkei
-data were provided by APIR.
+Yoichi Matsubayashi, and Yusuke Ikuta for their support.  
 
 ## Reference
 
