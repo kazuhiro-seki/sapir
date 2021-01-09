@@ -2,7 +2,7 @@
 
 ## About
 
-This is a repository of a [demonstration system](http://44.237.209.189/sapir) of my ongoing work, partly carried out as an [APIR](https://www.apir.or.jp) research project, "development and application of new business sentiment index based on textual data". The system also let you analyze any given factors that may/may not influence business sentiment. More features are planned to be added. Stay tuned!
+This is a repository of a [demonstration system](http://44.237.209.189/sapir) of our ongoing work, partly carried out as an [APIR](https://www.apir.or.jp) research project, "development and application of new business sentiment index based on textual data". The system also let you analyze any given factors that may/may not influence business sentiment. More features are to be added. Stay tuned!
 
 ## Requirements
 
