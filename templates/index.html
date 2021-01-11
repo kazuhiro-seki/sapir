@@ -94,7 +94,7 @@
   <section class="jumbotron text-center">
     <div class="container">
       <h1><a href={{ url_for('home') }} style='color: black'>S-APIR Index</a></h1>
-      <p class="lead text-muted">Search any keyword which may have an influence on business sentiment. </br> Don't have a Japanese input method? Try "<a href="javascript:set_and_submit('コロナ')">コロナ</a>" (coronavirus), "<a href="javascript:set_and_submit('アベノミクス')">アベノミクス</a>" (Abenomics), or "<a href="javascript:set_and_submit('東京五輪')">東京五輪</a>" (Tokyo Olympic), for example.</p>
+      <p class="lead text-muted">Search any keyword which may have an influence on business sentiment. </br> Don't have a Japanese input method? Try "<a href="javascript:set_and_submit('コロナ')" style='color:#2471a3'">コロナ</a>" (coronavirus), "<a href="javascript:set_and_submit('増税')" style='color:#2471a3'>増税</a>" (tax increase), or "<a href="javascript:set_and_submit('東京五輪')" style='color:#2471a3'>東京五輪</a>" (Tokyo Olympic), for example.</p>
       <form name="myform" action="{{ url_for('search') }}" method="POST" enctype="multipart/form-data" id="usrform" class="form-inline justify-content-center">
 	<input type="text" name="keyword" id="keyword" class="form-control" autofocus>
 	<input type=submit value="Search" class="btn btn-secondary my-2">
