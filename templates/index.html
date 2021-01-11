@@ -24,24 +24,9 @@
 </script>
 
 <script type="text/javascript">
- function submitform1()
+ function set_and_submit(word)
  {
-     document.getElementById("keyword").value = "アベノミクス";
-     document.myform.submit();
- }
- function submitform2()
- {
-     document.getElementById("keyword").value = "コロナ";
-     document.myform.submit();
- }
- function submitform3()
- {
-     document.getElementById("keyword").value = "東京五輪";
-     document.myform.submit();
- }
- function submitform4()
- {
-     document.getElementById("keyword").value = "増税";
+     document.getElementById("keyword").value = word;
      document.myform.submit();
  }
 </script>
@@ -109,7 +94,7 @@
   <section class="jumbotron text-center">
     <div class="container">
       <h1><a href={{ url_for('home') }} style='color: black'>S-APIR Index</a></h1>
-      <p class="lead text-muted">Search any keyword which may have an influence on business sentiment. </br> Don't have a Japanese input method? Try "<a href="javascript:submitform2()">コロナ</a>" (coronavirus), "<a href="javascript:submitform1()">アベノミクス</a>" (Abenomics), or "<a href="javascript:submitform3()">東京五輪</a>" (Tokyo Olympic), for example.</p>
+      <p class="lead text-muted">Search any keyword which may have an influence on business sentiment. </br> Don't have a Japanese input method? Try "<a href="javascript:set_and_submit('コロナ')">コロナ</a>" (coronavirus), "<a href="javascript:set_and_submit('アベノミクス')">アベノミクス</a>" (Abenomics), or "<a href="javascript:set_and_submit('東京五輪')">東京五輪</a>" (Tokyo Olympic), for example.</p>
       <form name="myform" action="{{ url_for('search') }}" method="POST" enctype="multipart/form-data" id="usrform" class="form-inline justify-content-center">
 	<input type="text" name="keyword" id="keyword" class="form-control" autofocus>
 	<input type=submit value="Search" class="btn btn-secondary my-2">
