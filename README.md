@@ -2,7 +2,7 @@
 
 ## About
 
-This is a repository of a [demonstration system](http://44.237.209.189/sapir) of our ongoing work, partly carried out as an [APIR](https://www.apir.or.jp) research project, "development and application of new business sentiment index based on textual data". The system also let you analyze any given factors that may/may not influence business sentiment. More features are to be added. Stay tuned!
+This is a repository of a [demonstration system](http://44.237.209.189/sapir) of our ongoing work, partly carried out as an [APIR](https://www.apir.or.jp) research project, "development and application of new business sentiment index based on textual data". The system also lets you analyze any given factors that may/may not influence business sentiment. More features are to be added. Stay tuned!
 
 ## Requirements
 
@@ -39,11 +39,13 @@ python index.py --input data.txt
 export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 ```
 
-4. Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser. An example query "増税" (tax increase) is preset in the text box for convenience.
+4. Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser. 
 
 <img src="/figs/landing.png" width="600">
 
-5. Search the example query or any other keywords to find out thier influences on business sentiment. For the example of "増税", we can see from the resulting plot that there have been multiple periods in which tax increase had notable negative effects and the one in 2014 had the biggest impact. The query specific data can be downloaded as a csv file by clicking the "csv" button.
+5. Search any keywords to find out thier influences on business sentiment. If you don't have Japanese IME, you can still try some example queries by clicking respective links above text box.  Take "増税" (tax increase) as an example, we can see from the resulting plot that there have been multiple periods in which tax increase had notable negative effects and the one in 2014 had the biggest impact, when sales tax had increased from 5 to 8%. 
+
+6. The resulting data for each query can be downloaded as a CSV file by clicking the "csv" button. 
 
 <img src="/figs/tax.png" width="600">
 
