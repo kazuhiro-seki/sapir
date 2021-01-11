@@ -9,26 +9,50 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='album.css') }}">
 
 <script type=text/javascript>
-  {% for i in range(contribs|length) %}
-  $(function() {
-      $('a#delete{{i}}').bind('click', function() {
-          $.getJSON("{{ url_for('delete_factor') }}",
-		    {id: {{i}}},
-                    function(data) {
-			//do nothing
-		    });
-          return false;
-      });
-  });
-  {% endfor %}
+ {% for i in range(contribs|length) %}
+ $(function() {
+     $('a#delete{{ i }}').bind('click', function() {
+         $.getJSON("{{ url_for('delete_factor') }}",
+		   {word: "{{ contribs[i][0].factor }}"},
+                   function(data) {
+		       //do nothing
+		   });
+         return false;
+     });
+ });
+ {% endfor %}
 </script>
 
+<script type="text/javascript">
+ function submitform1()
+ {
+     document.getElementById("keyword").value = "アベノミクス";
+     document.myform.submit();
+ }
+ function submitform2()
+ {
+     document.getElementById("keyword").value = "コロナ";
+     document.myform.submit();
+ }
+ function submitform3()
+ {
+     document.getElementById("keyword").value = "東京五輪";
+     document.myform.submit();
+ }
+ function submitform4()
+ {
+     document.getElementById("keyword").value = "増税";
+     document.myform.submit();
+ }
+</script>
+
+
 <style>
-  canvas{
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-  }
+ canvas{
+     -moz-user-select: none;
+     -webkit-user-select: none;
+     -ms-user-select: none;
+ }
 </style>
 
 {% endblock %}
@@ -85,9 +109,9 @@
   <section class="jumbotron text-center">
     <div class="container">
       <h1><a href={{ url_for('home') }} style='color: black'>S-APIR Index</a></h1>
-      <p class="lead text-muted">Search any factor (keyword) which may have an influence on business sentiment. </br> "増税" (tax increase) is preset as a query for convenience.</p>
-      <form action="{{ url_for('search') }}" method="POST" enctype="multipart/form-data" id="usrform" class="form-inline justify-content-center">
-	<input type="text" name="keyword" id="keyword" value="増税" class="form-control" autofocus>
+      <p class="lead text-muted">Search any keyword which may have an influence on business sentiment. </br> Don't have a Japanese input method? Try "<a href="javascript:submitform2()">コロナ</a>" (coronavirus), "<a href="javascript:submitform1()">アベノミクス</a>" (Abenomics), or "<a href="javascript:submitform3()">東京五輪</a>" (Tokyo Olympic), for example.</p>
+      <form name="myform" action="{{ url_for('search') }}" method="POST" enctype="multipart/form-data" id="usrform" class="form-inline justify-content-center">
+	<input type="text" name="keyword" id="keyword" class="form-control" autofocus>
 	<input type=submit value="Search" class="btn btn-secondary my-2">
       
       </form>
@@ -123,12 +147,12 @@
 	    <div class="card-body">
 	      <canvas id="canvas{{i}}"></canvas>
 	      <div class="d-flex justify-content-center align-items-center">
-		<div class="btn-group">
-		  <a href=# id="delete{{i}}"><button id="delete{{i}}" type="button" class="btn btn-sm btn-outline-secondary" style="margin: 0.8rem 0.8rem 0rem 0rem">delete</button></a>
-		</div>
-		<div class="btn-group">
-		  <a href={{ url_for('download', id=i) }} class="btn btn-sm btn-outline-secondary" style="margin: 0.8rem 0rem 0 0">csv</a>
-		</div>
+		  <div class="btn-group">
+		      <a href=# id="delete{{i}}"><button id="delete{{i}}" type="button" class="btn btn-sm btn-outline-secondary" style="margin: 0.8rem 0.8rem 0rem 0rem">delete</button></a>
+		  </div>
+		  <div class="btn-group">
+		      <a href={{ url_for('download', word=contribs[i][0].factor) }} class="btn btn-sm btn-outline-secondary" style="margin: 0.8rem 0rem 0 0">csv</a>
+		  </div>
 	      </div>
 	    </div>
 	  </div>

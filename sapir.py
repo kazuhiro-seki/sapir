@@ -188,31 +188,30 @@ def search():
 
 @app.route('/delete_factor')
 def delete_factor():
-    app.logger.info('received: ' + request.args.get('id'))
+    app.logger.info('received: ' + request.args.get('word'))
 
     # update cookie
     watchlist = request.cookies.get('watchlist').split('|')
     app.logger.debug('before: ' + ' '.join(watchlist))
-    res = make_response('')
-    watchlist.pop(int(request.args.get('id')))
+    watchlist.remove(request.args.get('word'))
     app.logger.debug('after:  ' + ' '.join(watchlist))
+
+    res = make_response('')
     res.set_cookie('watchlist', '|'.join(watchlist),
                    max_age=60*60*24*expiration_days)
     
     return res
-        
-@app.route("/<int:id>/download")
-def download(id):
 
-    app.logger.info('received: ' + str(id))
+@app.route("/<word>/download")
+def download(word):
+
+    app.logger.info('received: ' + word)
     
     # get keyword by given id
     watchlist = request.cookies.get('watchlist').split('|')
-    w = watchlist[id]
-    app.logger.info('keyword: ' + w)
     
     # inquire database
-    result = SAPIR_MONTH.query.filter_by(factor=w).all()
+    result = SAPIR_MONTH.query.filter_by(factor=word).all()
 
     # dynamically prepare csv file
     f = StringIO()
@@ -224,7 +223,7 @@ def download(id):
 
     res = make_response(f.getvalue())
     res.headers['Content-Type'] = 'text/csv'
-    file_expr = "filename*=utf-8''{}".format(quote(w+'.csv'))
+    file_expr = "filename*=utf-8''{}".format(quote(word+'.csv'))
     res.headers['Content-Disposition'] = \
         'attachment; {}'.format(file_expr)
     
