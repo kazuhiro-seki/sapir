@@ -43,7 +43,9 @@ export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 
 <img src="/figs/landing.png" width="600">
 
-5. Search any keywords to find out thier influences on business sentiment. If you don't have Japanese IME, you can still try some example queries by clicking respective links above text box.  Take "増税" (tax increase) as an example, we can see from the resulting plot that there have been multiple periods in which tax increase had notable negative effects and the one in 2014 had the biggest impact, when sales tax had increased from 5 to 8%. 
+5. Search any keywords to find out thier influences on business sentiment. 
+
+If you don't have Japanese IME, you can still try some example queries by clicking respective links above text box.  Take "増税" (tax increase) as an example, we can see from the resulting plot that there have been multiple periods in which tax increase had notable negative effects and the one in 2014 had the biggest impact, when sales tax had increased from 5 to 8%. 
 
 6. The resulting data for each query can be downloaded as a CSV file by clicking the "csv" button. 
 
