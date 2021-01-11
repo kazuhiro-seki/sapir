@@ -47,7 +47,7 @@ export FLASK_ENV=development; env FLASK_APP=sapir.py flask run
 
 6. The resulting data for each query can be downloaded as a CSV file for further analysis by clicking the "csv" button. 
 
-<img src="/figs/tax.png" width="600">
+<img src="/figs/factors.png" width="600">
 
 ## Demo system
 
